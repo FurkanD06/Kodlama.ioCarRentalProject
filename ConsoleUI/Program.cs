@@ -2,15 +2,32 @@
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
-BrandManager brandManager = new BrandManager(new EfBrandDal());
-//brandManager.Add(new Brand { BrandName = "B" });
+//BrandTest();
+
+CarTest();
+
+//ColorTest();
 
 
-CarManager carManager = new CarManager(new EfCarDal());
-//carManager.Add(new Car { BrandId = 1, ColorId = 1, DailyPrice = 0, ModelYear = 2010, Description = "Benzin" });
-carManager.Update(new Car { Id = 2, BrandId = 1, ColorId = 1, DailyPrice = 400, ModelYear = 2017, Description = "Benzin" });
 
-ColorManager colorManager = new ColorManager(new EfColorDal());
-//colorManager.Add(new Color { ColorName = "S" });
+static void CarTest()
+{
+    CarManager carManager = new CarManager(new EfCarDal());
+    foreach (var car in carManager.CarDetails())
+    {
+        Console.WriteLine("Marka ismi : " + car.BrandName + "Renk İsmi : " + car.ColorName + "Günlük fiyatı : " + car.DailyPrice + "Açıklama : " + car.Description);
 
+    }
+}
 
+static void ColorTest()
+{
+    ColorManager colorManager = new ColorManager(new EfColorDal());
+    colorManager.Add(new Color { ColorName = "S" });
+}
+
+static void BrandTest()
+{
+    BrandManager brandManager = new BrandManager(new EfBrandDal());
+    brandManager.Add(new Brand { BrandName = "B" });
+}
