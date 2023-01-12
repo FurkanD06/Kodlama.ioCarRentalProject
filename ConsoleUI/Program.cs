@@ -2,32 +2,23 @@
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
-//BrandTest();
 
-CarTest();
-
-//ColorTest();
+RentalAdded();
 
 
-
-static void CarTest()
+static void RentalAdded()
 {
-    CarManager carManager = new CarManager(new EfCarDal());
-    foreach (var car in carManager.CarDetails())
-    {
-        Console.WriteLine("Marka ismi : " + car.BrandName + "Renk İsmi : " + car.ColorName + "Günlük fiyatı : " + car.DailyPrice + "Açıklama : " + car.Description);
+    RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-    }
-}
+    
+    Rental rental = new Rental();
+    rental.CarId = 1;
+    rental.CustomerId = 1;
+    rental.RentDate = DateTime.Now;
+    rental.ReturnDate = DateTime.Now.AddDays(1);
 
-static void ColorTest()
-{
-    ColorManager colorManager = new ColorManager(new EfColorDal());
-    colorManager.Add(new Color { ColorName = "S" });
-}
 
-static void BrandTest()
-{
-    BrandManager brandManager = new BrandManager(new EfBrandDal());
-    brandManager.Add(new Brand { BrandName = "B" });
+    var result = rentalManager.Add(rental);
+    Console.WriteLine(result.Message);
+    
 }
