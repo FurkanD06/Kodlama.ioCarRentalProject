@@ -54,5 +54,8 @@ namespace Business.Constants
         public static string RentalByCustomerId = "Kiralama Müşteri Id numarasına göre listelendi";
         public static string RentalByCarId = "Kiralama Araba Id numarasına göre listelendi";
         public static string RentalListed = "Kiralamalar listelendi";
+        public static string CheckImageLimit = "Araba resmi en fazla 5 adet olmalıdır";
+        public static string ImageAdded = "Resim eklendi";
+        public static string CarImageLimit = "En fazla 5 resim eklenebilir";
     }
 }

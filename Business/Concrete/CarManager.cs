@@ -3,6 +3,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -34,10 +35,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> CarDetails()
         {
-            if (DateTime.Now.Hour == 2)
-            {
-                return new ErrorDataResult<List<CarDetailDto>>(Messages.SystemIsInMaintenance);
-            }
+            
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.CarDetails(), Messages.CarListedByDto);
         }
 
@@ -49,7 +47,8 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-
+            
+            
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
 
@@ -74,6 +73,8 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
+
+        
 
     }
 }
